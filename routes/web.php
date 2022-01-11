@@ -34,6 +34,10 @@ Route::get('/telefone',[DashboardController::class,'phone'])
 ->middleware('auth')
 ->name('dashboard.phone');
 
+Route::post('/telefone/adicionar',[DashboardController::class,'addPhone'])
+->middleware('auth')
+->name('dashboard.add');
+
 Route::get('/tutelas',[DashboardController::class,'guardianshipTransfer'])
 ->middleware('auth')
 ->name('dashboard.guardianshipTransfer');
@@ -42,11 +46,19 @@ Route::post('/dashboard/user/create',[DashboardController::class,'createUser'])
 ->middleware('auth')
 ->name('dashboard.createUser');
 
-Route::get('/dashboard/user/delete/{id?}',[DashboardController::class,'deleteUser'])
+Route::get('/dashboard/user/apagar/{id?}',[DashboardController::class,'deleteUser'])
 ->middleware('auth')
 ->name('dashboard.deleteUser')
 ->where(['id' => '[0-9]+']);
 
-// Auth::routes();
+Route::get('/dashboard/phone/apagr/{id?}',[DashboardController::class,'deletePhone'])
+->middleware('auth')
+->name('dashboard.deletePhone')
+->where(['id' => '[0-9]+']);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+
+Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
