@@ -1,6 +1,6 @@
 :root {
     --dark: #121214;
-    --input: #1a1a1d8a;
+    --input: #1a1a1dc0;
     --light: rgb(148, 148, 148);
     --border-bottom: rgba(92, 92, 92, 0.336);
     --paragraphy: rgb(92, 92, 92);
@@ -124,12 +124,14 @@ ul, li {
 .welcome-content form input:focus{
     background: transparent;
     box-shadow: none;
+    border: 3px solid var(--input);
 }
 .welcome-content form input {
     background-color: var(--input);
     border: 0;
-    border-bottom: 2px solid var(--purple);
-    padding: 10px;
+    border: 3px solid var(--input);
+    /* border-bottom: 2px solid var(--purple); */
+    padding: 15px 10px;
     outline: none;
     border-radius: 0;
 
