@@ -53,6 +53,10 @@
                   <a href="{{ route('dashboard.deletePhone',$phone->id) }}" class="btn btn-danger">
                       <ion-icon name="trash-outline"></ion-icon>
                   </a>
+
+                  <a href="{{ route('dashboard.guardianshipTransfer',$phone->id) }}" class="btn btn-primary">
+                    <ion-icon name="arrow-redo-circle-outline"></ion-icon>
+                </a>
                 </tr>
             
                 @endforeach
