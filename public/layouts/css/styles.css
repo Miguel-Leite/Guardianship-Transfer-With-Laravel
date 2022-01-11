@@ -1,0 +1,142 @@
+:root {
+    --dark: #121214;
+    --input: #1a1a1d8a;
+    --light: rgb(148, 148, 148);
+    --border-bottom: rgba(92, 92, 92, 0.336);
+    --paragraphy: rgb(92, 92, 92);
+    --purple: rgb(162, 62, 255);
+    --success: rgb(0, 160, 80);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto',sans-serif;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+
+.navbar-page {
+    width: 80%;
+    height: 60px;
+    margin: auto;
+    padding: 50px 10px;
+    border-bottom: 2px solid var(--border-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-page .brand {
+    font-size: 38px;
+    color: var(--light);
+    font-weight: bold;
+}
+
+.navbar-page ul {
+    display: flex;
+    gap: 30px;
+    font-size: 18px;
+}
+
+.navbar-page ul a {
+    color: var(--light);
+    padding-bottom: 48px;
+    position: relative;
+}
+
+.navbar-page ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--purple),var(--dark));
+    transition: width 0.3s;   
+}
+
+.navbar-page ul a:hover::before {
+    width: 100%;
+}
+
+.welcome-content {
+    margin: 50px auto;
+    width: 80%;
+    height: 60vh;
+}
+
+.welcome-content h1 {
+    font-size: 55px;
+}
+.welcome-content h1 span {
+    color: var(--purple);
+    text-transform: uppercase;
+}
+
+.welcome-content p {
+    color: var(--paragraphy);
+    margin: 20px 0px;
+    line-height: 1.5rem;
+}
+
+.welcome-content .btn {
+    background-color: var(--success);
+    padding: 10px 30px;
+    color: white;
+    transition: filter 0.2s;
+}
+
+.welcome-content form .btn:hover,
+.welcome-content .btn:hover {
+    filter: brightness(0.8);
+}
+
+.welcome-content h2 {
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.welcome-content h2::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--purple),var(--dark));
+}
+.welcome-content form input:focus{
+    background: transparent;
+    box-shadow: none;
+}
+.welcome-content form input {
+    background-color: var(--input);
+    border: 0;
+    border-bottom: 2px solid var(--purple);
+    padding: 10px;
+    outline: none;
+    border-radius: 0;
+
+}
+
+.welcome-content form .btn {
+    margin-top: 4%;
+    background-color: var(--purple);
+    transition: filter 0.2s;
+}

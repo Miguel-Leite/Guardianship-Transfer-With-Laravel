@@ -1,0 +1,101 @@
+:root {
+    --white: #fefefe;
+    --body: rgb(148, 148, 148);
+    --panel: #1c1c1f;
+    --input: #1a1a1d8a;
+    --light: rgb(148, 148, 148);
+    --border-bottom: rgba(92, 92, 92, 0.336);
+    --paragraphy: rgb(92, 92, 92);
+    --purple: rgb(162, 62, 255);
+    --success: rgb(0, 160, 80);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto',sans-serif;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--light);
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+
+.header {
+    width: 100%;
+    height: 25vh;
+    background-color: var(--panel);
+    padding-top: 20px;
+}
+
+.navbar-panel {
+    width: 80%;
+    height: 70px;
+    margin: auto;
+    padding: 40px 10px;
+    /* border-bottom: 2px solid var(--border-bottom); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-panel .brand {
+    font-size: 38px;
+    color: var(--light);
+    font-weight: bold;
+}
+
+.navbar-panel ul {
+    display: flex;
+    gap: 30px;
+    font-size: 18px;
+}
+
+.navbar-panel ul a {
+    color: var(--light);
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.navbar-panel ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--light);
+    transition: width 0.3s;   
+}
+
+.navbar-panel ul a:hover::before {
+    width: 50%;
+}
+
+.panel-body {
+    width: 80%;
+    height: auto;
+    padding: 20px 10px;
+    box-shadow: 3px 6px 16px rgba(151, 151, 151, 0.637);
+    margin: -30px auto;
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+.panel-body .top {
+    width: 100%;
+    height: auto;
+    text-align: right;
+    margin-bottom: 20px;
+} 
