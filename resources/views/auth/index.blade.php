@@ -23,18 +23,13 @@
             
                 <form action="{{ route('dashboard.index') }}" method="get">
                     <div class="form-group">
-                      <label for="name"></label>
-                      <input type="text" name="name" id="name" class="form-control" placeholder="Digite os seu nome comleto">
-                    </div>
-
-                    <div class="form-group">
                       <label for="email"></label>
-                      <input type="text" name="email" id="email" class="form-control" placeholder="Digite um e-mail valido">
+                      <input type="text" name="email" id="email" class="form-control" placeholder="Digite seu e-mail">
                     </div>
 
                     <div class="form-group">
                       <label for="password"></label>
-                      <input type="password" name="password" id="password" class="form-control" placeholder="Digite uma senha segura">
+                      <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha">
                     </div>
 
                     <button type="submit" class="btn col-12"> Entrar </button>
