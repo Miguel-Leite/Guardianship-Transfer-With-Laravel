@@ -18,10 +18,27 @@
                 <a href="{{ route('auth.index') }}" class="btn"> Saber mais </a>
             </div>
             <div class="col-lg-5">
-                <h2>Registra-se</h2>
+                <h2>Login</h2>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger my-1">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    </div>        
+                @endif
+                @if (session('danger'))
+                    <div class="alert alert-danger mb-3">
+                        {{ session('danger') }}
+                    </div>
+                @endif
                 {{-- <p class="mb-0"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> --}}
             
-                <form action="{{ route('dashboard.index') }}" method="get">
+                <form action="{{ route('auth.auth') }}" method="post">
+
+                    @csrf
+
                     <div class="form-group">
                       <label for="email"></label>
                       <input type="text" name="email" id="email" class="form-control" placeholder="Digite seu e-mail">

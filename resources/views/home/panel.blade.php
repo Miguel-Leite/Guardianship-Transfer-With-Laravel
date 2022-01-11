@@ -13,7 +13,17 @@
     </div>
 
     <div class="container">
+      @if (session('success'))
+            <div class="alert alert-success mb-3">
+                {{ session('success') }}
+            </div>
+      @endif
 
+      @if (session('danger'))
+            <div class="alert alert-danger mb-3">
+                {{ session('danger') }}
+            </div>
+      @endif
         <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -30,12 +40,11 @@
                   <td> {{ $user->name }}</td> 
                   <td> {{ $user->email }}</td>
                   <td>
-                    <a href="#" class="btn btn-danger">
-                        <ion-icon name="trash-outline"></ion-icon>
-                    </a>
-                    <a href="#" class="btn btn-success">
-                        <ion-icon name="pencil-outline"></ion-icon>
-                    </a>
+                    @if ($user->id != $logger->id)
+                      <a href="{{ route('dashboard.deleteUser',$user->id) }}" class="btn btn-danger">
+                          <ion-icon name="trash-outline"></ion-icon>
+                      </a>
+                    @endif 
                 </td>
                 </tr>
               @endforeach
@@ -60,8 +69,8 @@
           
       <div class="modal-body mt-3">
         <div class="container-fluid">
-          <form action="{{ 'dashboard.createUser' }}" method="post">
-
+          <form action="{{ route('dashboard.createUser') }}" method="POST">
+            @csrf
             <div class="form-group my-4">
               <label for="name">Nome:</label>
               <input type="text" name="name" class="form-control" placeholder="Digite o nome completo" required>
@@ -73,8 +82,13 @@
             </div>
 
             <div class="form-group my-4">
+              <label for="phone">Telefone:</label>
+              <input type="text" name="phone" class="form-control" placeholder="Digite o telefone do usuario" required>
+            </div>
+
+            <div class="form-group my-4">
               <label for="password">Senha:</label>
-              <input type="text" name="name" class="form-control" placeholder="Digite a senha do usuario" required>
+              <input type="password" name="password" class="form-control" placeholder="Digite a senha do usuario" required>
             </div>
 
             <div class="form-group mt-3">
