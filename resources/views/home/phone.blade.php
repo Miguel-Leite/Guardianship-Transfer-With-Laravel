@@ -13,23 +13,49 @@
     </div>
 
     <div class="container">
-
+      @if (session('success'))
+          <div class="alert alert-success mb-3">
+              {{ session('success') }}
+          </div>
+      @endif
+      @if (session('danger'))
+          <div class="alert alert-danger mb-3">
+              {{ session('danger') }}
+          </div>
+      @endif
         <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Name</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Usuario</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
+            @foreach ($phones as $phone)    
+              
+            <tr>
+                <th scope="row">{{ $phone->id }}</th>
+                <td>{{ $phone->name }}</td>
+                <td> {{ $phone->model }}</td> </td>
+                <td> {{ $phone->price }} - AKZ</td> </td>
+                
+                @foreach ($users as $user)
+                    @if ($user->id === $phone->user_id)
+                    <td>{{ $user->name }}</td>
+                    @endif
+                @endforeach
+                
+                <td>
+                  <a href="{{ route('dashboard.deletePhone',$phone->id) }}" class="btn btn-danger">
+                      <ion-icon name="trash-outline"></ion-icon>
+                  </a>
+                </tr>
+            
+                @endforeach
             </tbody>
           </table>
 
@@ -50,7 +76,7 @@
           
       <div class="modal-body mt-3">
         <div class="container-fluid">
-          <form action="{{ route('dashboard.createUser') }}" method="POST">
+          <form action="{{ route('dashboard.add') }}" method="POST">
             @csrf
             <div class="form-group my-4">
              <div class="form-group">
@@ -72,6 +98,11 @@
             <div class="form-group my-4">
               <label for="model">Model do telefone(marca):</label>
               <input type="text" name="model" class="form-control" placeholder="Digite modelo do telefone..." required>
+            </div>
+
+            <div class="form-group my-4">
+              <label for="price">Preço:</label>
+              <input type="number" name="price" class="form-control" placeholder="Digite o preço telefone..." required>
             </div>
 
             <div class="form-group mt-3">
