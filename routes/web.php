@@ -27,4 +27,5 @@ Route::get('/telefone',[DashboardController::class,'phone'])
 Route::get('/tutelas',[DashboardController::class,'guardianshipTransfer'])
 ->name('dashboard.guardianshipTransfer');
 
-
+Route::post('/dashboard/user/create',[DashboardController::class,'createUser'])
+->name('dashboard.createUser');
