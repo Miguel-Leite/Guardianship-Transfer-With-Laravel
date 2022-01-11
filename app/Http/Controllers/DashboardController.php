@@ -6,13 +6,10 @@ use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
-
-    public function __construct() {
-        $this->middleware('auth');
-    }
 
     public function index() {
 
@@ -31,6 +28,8 @@ class DashboardController extends Controller
     }
 
     public function auth(Request $request) {
+
+        $this->middleware('auth');
         
         $user = Auth::user();
         
@@ -44,17 +43,18 @@ class DashboardController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email,'password'=>$request->password])) {
-            return redirect()->route('dashboard.index')->with('success',"Bem-vindo ao panel de control {$user->name}");
+            return redirect()->route('dashboard.index')->with('success',"Bem-vindo ao panel de control");
         } else {
-            return redirect()->back()->with('danger','E-mail ou senha invalida!');
+            return redirect()->route('auth.index')->with('danger','E-mail ou senha invalida!');
         }
     }
 
     public function phone() {
 
         $users = User::all();
+        $phones = Phone::all();
 
-        return view('home.phone',compact('users'));
+        return view('home.phone',compact('users','phones'));
     }
 
     public function guardianshipTransfer() {
@@ -94,5 +94,42 @@ class DashboardController extends Controller
     public function addPhone(Request $request) {
 
         $phone = new Phone();
+
+        $phone->name = $request->name;
+        $phone->price = $request->price;
+        $phone->model = $request->model;
+        $phone->user_id = $request->user_id;
+
+        $verify=$phone->save();
+
+        if ($verify) {
+            return redirect()
+                    ->route('dashboard.phone')
+                    ->with('success','Telefone adicionado com sucesso!');
+        }
+
+        return redirect()
+                    ->route('dashboard.phone')
+                    ->with('danger','Ops! Error ao adicionar o telefone.');
+
+    }
+
+    public function deletePhone($id) {
+
+        $phone = Phone::find($id);
+
+        $phone->delete();
+
+        return redirect()
+                    ->route('dashboard.phone')
+                    ->with('success','Registro de telefone apagado com sucesso!');
+    }
+
+    public function logout() {
+        Session::flush();
+        
+        Auth::logout();
+
+        return redirect()->route('auth.index');
     }
 }
