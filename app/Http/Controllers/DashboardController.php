@@ -6,6 +6,7 @@ use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
@@ -57,8 +58,13 @@ class DashboardController extends Controller
         return view('home.phone',compact('users','phones'));
     }
 
-    public function guardianshipTransfer() {
-        return view('home.guardianshipTransfer');
+    public function guardianshipTransfer($id) {
+
+        $phone = Phone::find($id);
+        $user = User::find($phone->user_id);
+        $users = User::all();
+        
+        return view('home.guardianshipTransfer',compact('phone','user','users'));
     }
 
     public function createUser(Request $request) {
@@ -112,6 +118,13 @@ class DashboardController extends Controller
                     ->route('dashboard.phone')
                     ->with('danger','Ops! Error ao adicionar o telefone.');
 
+    }
+
+    public function updatePhone(Request $request,$id) {
+        $phone = Phone::find($id);
+        $phone->update($request->all());
+
+        return redirect()->route('dashboard.phone');
     }
 
     public function deletePhone($id) {
