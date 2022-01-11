@@ -15,17 +15,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        return redirect()->route('dashboard.index');
+    }
     return view('auth.index');
 })->name('auth.index');
 
+
+Route::post('/auth',[DashboardController::class,'auth'])
+->name('auth.auth');
+
+
 Route::get('/dashboard',[DashboardController::class,'index'])
+->middleware('auth')
 ->name('dashboard.index');
 
 Route::get('/telefone',[DashboardController::class,'phone'])
+->middleware('auth')
 ->name('dashboard.phone');
 
 Route::get('/tutelas',[DashboardController::class,'guardianshipTransfer'])
+->middleware('auth')
 ->name('dashboard.guardianshipTransfer');
 
 Route::post('/dashboard/user/create',[DashboardController::class,'createUser'])
+->middleware('auth')
 ->name('dashboard.createUser');
+
+Route::get('/dashboard/user/delete/{id?}',[DashboardController::class,'deleteUser'])
+->middleware('auth')
+->name('dashboard.deleteUser')
+->where(['id' => '[0-9]+']);
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
