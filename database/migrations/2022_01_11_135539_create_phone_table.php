@@ -18,6 +18,7 @@ class CreatePhoneTable extends Migration
 
             $table->string('name');
             $table->string('model');
+            $table->string('price');
 
             $table->timestamps();
         });
