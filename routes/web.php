@@ -30,17 +30,23 @@ Route::get('/dashboard',[DashboardController::class,'index'])
 ->middleware('auth')
 ->name('dashboard.index');
 
-Route::get('/telefone',[DashboardController::class,'phone'])
+Route::get('/dashboard/telefone',[DashboardController::class,'phone'])
 ->middleware('auth')
 ->name('dashboard.phone');
 
-Route::post('/telefone/adicionar',[DashboardController::class,'addPhone'])
+Route::post('/dashboard/telefone/adicionar',[DashboardController::class,'addPhone'])
 ->middleware('auth')
 ->name('dashboard.add');
 
-Route::get('/tutelas',[DashboardController::class,'guardianshipTransfer'])
+Route::put('/dashboard/telefone/update/{id?}',[DashboardController::class,'updatePhone'])
 ->middleware('auth')
-->name('dashboard.guardianshipTransfer');
+->name('dashboard.updatePhone')
+->where(['id' => '[0-9]+']);
+
+Route::get('/tutelas/{id?}',[DashboardController::class,'guardianshipTransfer'])
+->middleware('auth')
+->name('dashboard.guardianshipTransfer')
+->where(['id' => '[0-9]+']);
 
 Route::post('/dashboard/user/create',[DashboardController::class,'createUser'])
 ->middleware('auth')
@@ -55,7 +61,6 @@ Route::get('/dashboard/phone/apagr/{id?}',[DashboardController::class,'deletePho
 ->middleware('auth')
 ->name('dashboard.deletePhone')
 ->where(['id' => '[0-9]+']);
-
 
 
 
