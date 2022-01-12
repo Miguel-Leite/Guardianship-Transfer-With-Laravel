@@ -23,7 +23,7 @@
             <ul>
                 <li> <a href="{{ route('dashboard.index') }}"> Usuarios </a> </li>
                 <li> <a href="{{ route('dashboard.phone') }}"> Telefone </a> </li>
-                <li> <a href="{{ route('dashboard.guardianshipTransfer') }}"> Tutelas </a> </li>
+                {{-- <li> <a href="{{ route('dashboard.guardianshipTransfer') }}"> Tutelas </a> </li> --}}
                 <li> <a href="{{ route('logout') }}"> Sair </a> </li>
             </ul>
         </nav>
